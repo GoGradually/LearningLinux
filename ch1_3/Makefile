@@ -2,17 +2,17 @@
 
 CC=gcc
 CFLAGS=
-OBJS=ch1_3_main.o ch1_3_addnum.o
+OBJS=ch1_3_main.o ch1_3_subnum.o
 LIBS=
-all : add.out
+all : sub.out
 
-add.out : $(OBJS)
-	$(CC) $(CFLAGS) -o add.out $(OBJS) $(LIBS)
+sub.out : $(OBJS)
+	$(CC) $(CFLAGS) -o sub.out $(OBJS) $(LIBS)
 
 ch1_3_main.o : ch1_3_main.c
 	$(CC) $(CFLAGS) -c ch1_3_main.c
-ch1_3_addnum.o : ch1_3_addnum.c
-	$(CC) $(CFLAGS) -c ch1_3_addnum.c
+ch1_3_subnum.o : ch1_3_subnum.c
+	$(CC) $(CFLAGS) -c ch1_3_subnum.c
 
 clean:
-	rm -f $(OBJS) add.out *.o core
+	rm -f $(OBJS) sub.out *.o core
