@@ -21,5 +21,5 @@ int main() {
         perror("realpath");
         exit(1);
     }
-    printf("test.txt -> realpath = %s\n", str);
+    printf("test.txt -> realpath = %s\n", buf);
 }
