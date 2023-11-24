@@ -8,8 +8,8 @@
 
 int comp(const void *a, const void *b){
 	if(*(int*)a<*(int*)b) return -1;
-	if(*(int*)a==*(int*)b) return 0;
-	if(*(int*)a>*(int*)b) return 1;
+	else if (*(int*)a==*(int*)b) return 0;
+	else return 1;
 }
 int main(){
 	int fd = open("number", O_RDWR);
@@ -18,18 +18,18 @@ int main(){
 	fstat(fd, &fileInfo);
 	
 	
-	int *addr = mmap(NULL, fileInfo.st_size, PROT_READ | PROT_WRITE,MAP_SHARED,fd, 0);
-	if(addr==MAP_FAILED){
+	int *data = mmap(NULL, fileInfo.st_size, PROT_READ | PROT_WRITE,MAP_SHARED,fd, 0);
+	if(data==MAP_FAILED){
 		perror("Error mmapping the file");
 		exit(1);
 	}
 	size_t num = fileInfo.st_size / sizeof(int);
-	qsort(addr, num, sizeof(int), comp);
+    qsort(data, num, sizeof(int), comp);
 
-	if(msync(addr, fileInfo.st_size, MS_SYNC)==-1){
+	if(msync(data, fileInfo.st_size, MS_SYNC)==-1){
 		perror("Could not sync the file to dist");
 	}
-	if(munmap(addr, fileInfo.st_size)==-1){
+	if(munmap(data, fileInfo.st_size)==-1){
 		perror("Error un-mmapping the file");
 	}
 
