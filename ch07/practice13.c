@@ -10,7 +10,7 @@ int main(){
 			perror("fork()");
 			exit(1);
 		case 0:
-			if(execl("/var/run/utmp", "sudo","who", (char*) NULL)==-1){
+			if(execl("/var/run/utmp","who", (char*) NULL)==-1){
 				perror("execl()");
 				exit(1);
 			}
