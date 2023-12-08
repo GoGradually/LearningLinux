@@ -17,7 +17,6 @@ int main(){
 	
 	fstat(fd, &fileInfo);
 	
-	
 	int *data = mmap(NULL, fileInfo.st_size, PROT_READ | PROT_WRITE,MAP_SHARED,fd, 0);
 	if(data==MAP_FAILED){
 		perror("Error mmapping the file");
